@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci
 COPY . .
-
+RUN npm install
 RUN npm install -g nodemon
 
 CMD ["npx","nodemon","index.js"]
