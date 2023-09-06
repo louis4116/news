@@ -4,7 +4,12 @@ const autoScroll = require("../../util/autoScroll.js");
 const ltnMilitary = async (item) => {
   const browser = await puppeteer.launch({
     headless: "new",
-    args: ["--disable-infobars"],
+    args: [
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+      "--single-process",
+      "--no-zygote",
+    ],
     ignoreDefaultArgs: ["--enable-automation"],
     executablePath:
       process.env.NODE_ENV === "production"

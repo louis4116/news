@@ -5,12 +5,9 @@ const udnScrapy = async (item) => {
   const browser = await puppeteer.launch({
     headless: "new",
     args: [
-      "--disable-infobars",
-      "--disable-gpu",
-      "--disable-dev-shm-usage",
       "--disable-setuid-sandbox",
-      "--no-first-run",
       "--no-sandbox",
+      "--single-process",
       "--no-zygote",
     ],
     ignoreDefaultArgs: ["--enable-automation"],
