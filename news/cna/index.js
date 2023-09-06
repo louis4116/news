@@ -7,7 +7,7 @@ const cnaScrap = async (id) => {
       ignoreDefaultArgs: ["--enable-automation"],
       executablePath:
         process.env.NODE_ENV === "production"
-          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          ? "/usr/bin/google-chrome-stable"
           : puppeteer.executablePath(),
     });
 
