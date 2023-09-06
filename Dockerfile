@@ -12,4 +12,4 @@ COPY . .
 
 RUN npm install -g nodemon
 
-CMD ["nodemon","index.js"]
+CMD ["npx","nodemon","index.js"]
