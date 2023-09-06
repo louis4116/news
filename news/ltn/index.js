@@ -22,7 +22,7 @@ const ltnScrap = async (item) => {
     waitUntil: "domcontentloaded",
   });
 
-  await autoScroll({ page, dis: 3000, max: 3 });
+  // await autoScroll({ page, dis: 3000, max: 3 });
 
   const result = await page.evaluate(() => {
     let data = [];
