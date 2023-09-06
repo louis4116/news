@@ -1,0 +1,16 @@
+module.exports = [
+  "aall",
+  "aipl",
+  "aopl",
+  "acn",
+  "aie",
+  "asc",
+  "ait",
+  "ahel",
+  "asoc",
+  "aloc",
+  "acul",
+  "aspt",
+  "amov",
+  "newstopic",
+];
