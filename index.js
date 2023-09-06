@@ -33,6 +33,13 @@ app.use("/user", userRoute);
 app.use("/handleNews", userNewsRoute);
 app.use("/getUser", getUser);
 
+app.use("/", (req, res, next) => {
+  res.status(200).json({
+    status: "error",
+    msg: "連接成功",
+  });
+});
+
 app.use("*", (req, res, next) => {
   res.status(404).json({
     status: "error",
