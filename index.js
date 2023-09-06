@@ -35,7 +35,7 @@ app.use("/getUser", getUser);
 
 app.use("/", (req, res, next) => {
   res.status(200).json({
-    status: "error",
+    status: "success",
     msg: "連接成功",
   });
 });
