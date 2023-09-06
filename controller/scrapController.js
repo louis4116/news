@@ -21,7 +21,7 @@ const handleScrapNews = async (req, res, category, news) => {
   } catch (err) {
     res.status(400).json({
       status: "fail",
-      msg: "出錯！！！",
+      msg: err,
     });
   }
 };
