@@ -1,4 +1,5 @@
 FROM  ghcr.io/puppeteer/puppeteer:20.9.0
+FROM node:19.5.0-alpine
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 
