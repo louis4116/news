@@ -23,16 +23,16 @@ const cnaScrap = async (id) => {
       waitUntil: "domcontentloaded",
     });
 
-    let count = 0;
-    let maxCount = 2;
-    if (id !== "aall") {
-      //點擊畫面中的按鈕，讓新聞可以繼續跑
-      while (count <= maxCount) {
-        await page.waitForTimeout(200);
-        await page.click("#SiteContent_uiViewMoreBtn_Style3");
-        count++;
-      }
-    }
+    // let count = 0;
+    // let maxCount = 2;
+    // if (id !== "aall") {
+    //   //點擊畫面中的按鈕，讓新聞可以繼續跑
+    //   while (count <= maxCount) {
+    //     await page.waitForTimeout(200);
+    //     await page.click("#SiteContent_uiViewMoreBtn_Style3");
+    //     count++;
+    //   }
+    // }
 
     result = await page.evaluate(() => {
       let data = [];
