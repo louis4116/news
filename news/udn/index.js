@@ -4,12 +4,6 @@ const autoScroll = require("../../util/autoScroll");
 const udnScrapy = async (item) => {
   const browser = await puppeteer.launch({
     headless: "new",
-    args: [
-      "--disable-setuid-sandbox",
-      "--no-sandbox",
-      "--single-process",
-      "--no-zygote",
-    ],
     ignoreDefaultArgs: ["--enable-automation"],
     executablePath:
       process.env.NODE_ENV === "production"

@@ -4,12 +4,6 @@ const autoScroll = require("../../util/autoScroll");
 const ltnScrap = async (item) => {
   const browser = await puppeteer.launch({
     headless: "new",
-    args: [
-      "--disable-setuid-sandbox",
-      "--no-sandbox",
-      "--single-process",
-      "--no-zygote",
-    ],
     ignoreDefaultArgs: ["--enable-automation"],
     executablePath:
       process.env.NODE_ENV === "production"
@@ -22,7 +16,7 @@ const ltnScrap = async (item) => {
     waitUntil: "domcontentloaded",
   });
 
-  // await autoScroll({ page, dis: 3000, max: 3 });
+  await autoScroll({ page, dis: 3000, max: 3 });
 
   const result = await page.evaluate(() => {
     let data = [];
@@ -43,7 +37,7 @@ const ltnScrap = async (item) => {
     return data;
   });
   await page.waitForFunction(
-    (result) => {
+    async (result) => {
       return result && result.length >= 20;
     },
     {},
