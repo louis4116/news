@@ -1,6 +1,6 @@
 FROM  ghcr.io/puppeteer/puppeteer:20.9.0
 
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
