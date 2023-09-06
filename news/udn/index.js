@@ -14,6 +14,10 @@ const udnScrapy = async (item) => {
       "--no-zygote",
     ],
     ignoreDefaultArgs: ["--enable-automation"],
+    executablePath:
+      process.env.NODE_ENV === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
   });
   const page = await browser.newPage();
   await page.goto(`https://udn.com/news/breaknews/1/${item}#breaknews`, {

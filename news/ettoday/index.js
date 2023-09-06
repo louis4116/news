@@ -13,6 +13,10 @@ const etTodayScrapy = async (id) => {
       "--no-zygote",
     ],
     ignoreDefaultArgs: ["--enable-automation"],
+    executablePath:
+      process.env.NODE_ENV === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
   });
   const page = await broswer.newPage();
   await page.goto(`https://www.ettoday.net/news/focus/${id}/`);
