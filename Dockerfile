@@ -15,4 +15,4 @@ RUN npm ci
 # RUN npm install
 # RUN npm install -g nodemon
 COPY . .
-CMD ["nodemon","index.js"]
+CMD ["node","index.js"]
