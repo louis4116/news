@@ -69,6 +69,7 @@ const cnaScrap = async (id) => {
     await browser.close();
   } catch (e) {
     console.log(e);
+    console.log("test");
   }
 
   return result;
