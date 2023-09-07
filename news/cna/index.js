@@ -3,7 +3,7 @@ const chrome = require("chrome-aws-lambda");
 const cnaScrap = async (id) => {
   try {
     const browser = await chrome.puppeteer.launch({
-      headless: "new",
+      headless: chrome.headless,
       args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
       ignoreDefaultArgs: ["--enable-automation"],
       executablePath: await chrome.executablePath,
