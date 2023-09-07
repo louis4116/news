@@ -1,12 +1,18 @@
 const puppeteer = require("puppeteer-core");
 const { executablePath } = require("puppeteer");
+const chromium = require("@sparticuz/chromium");
 
 const cnaScrap = async (id) => {
   try {
     const browser = await puppeteer.launch({
-      headless: "new",
-      ignoreDefaultArgs: ["--enable-automation", "--disable-extensions"],
-      executablePath: executablePath(),
+      headless: "news",
+      ignoreDefaultArgs: [
+        ...chromium.args,
+        "--enable-automation",
+        "--disable-extensions",
+      ],
+      executablePath: await chromium.executablePath(),
+      defaultViewport: chromium.defaultViewport,
       ignoreHTTPSErrors: true,
     });
 
