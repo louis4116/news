@@ -4,6 +4,7 @@ const cnaScrap = async (id) => {
   try {
     const browser = await puppeteer.launch({
       headless: "new",
+      args: ["--no-sandbox"],
       ignoreDefaultArgs: ["--enable-automation"],
       executablePath:
         process.env.NODE_ENV === "production"

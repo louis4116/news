@@ -4,6 +4,7 @@ const autoScroll = require("../../util/autoScroll.js");
 const ltnMilitary = async (item) => {
   const browser = await puppeteer.launch({
     headless: "new",
+    args: ["--no-sandbox"],
     ignoreDefaultArgs: ["--enable-automation"],
     executablePath:
       process.env.NODE_ENV === "production"
