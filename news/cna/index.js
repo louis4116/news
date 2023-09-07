@@ -5,7 +5,10 @@ const cnaScrap = async (id) => {
     const browser = await puppeteer.launch({
       headless: "new",
       ignoreDefaultArgs: ["--enable-automation"],
-      executablePath: puppeteer.executablePath(),
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
     });
 
     const page = await browser.newPage();

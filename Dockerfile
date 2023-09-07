@@ -9,50 +9,28 @@
 # WORKDIR /usr/src/app
 
 # FROM node:slim
-
 # # We don't need the standalone Chromium
 # ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
-# # Install Google Chrome Stable and fonts
-# # Note: this installs the necessary libs to make the browser work with Puppeteer.
-# RUN apt-get update && apt-get install gnupg wget -y && \
-#   wget --quiet --output-document=- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg && \
-#   sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
-#   apt-get update && \
-#   apt-get install google-chrome-stable -y --no-install-recommends && \
-#   rm -rf /var/lib/apt/lists/*
-
-# COPY package*.json ./
-# RUN npm ci
-# # RUN npm install
-# RUN npm install -g nodemon
-# COPY . .
-# CMD ["nodemon","index.js"]
-# Use an official Node.js runtime as the base image
 FROM node:18
 
-# Set the working directory in the container
-WORKDIR /app
+# Install Google Chrome Stable and fonts
+# Note: this installs the necessary libs to make the browser work with Puppeteer.
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true\
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 
-# Copy package.json and package-lock.json to the container
+RUN apt-get update && apt-get install gnupg wget -y && \
+    wget --quiet --output-document=- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg && \
+    sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
+    apt-get update && \
+    apt-get install google-chrome-stable -y --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
 COPY package*.json ./
-
-# Install Node.js dependencies
-RUN npm install
-
-# Install Chromium for Puppeteer
-RUN apt-get update && apt-get install -y chromium
-
-# Install nodemon globally (optional)
+RUN npm ci
+# RUN npm install
 RUN npm install -g nodemon
-
-# Copy the rest of the application code to the container
 COPY . .
-
-# Expose a port (if your Node.js app listens on a specific port)
-# EXPOSE 3000
-
-# Start the Node.js application using Nodemon
-CMD ["nodemon", "your-app.js"]
+CMD ["nodemon","index.js"]
 
 
