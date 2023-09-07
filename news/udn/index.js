@@ -29,17 +29,15 @@ const udnScrapy = async (item) => {
       request.abort();
     else request.continue();
   });
-  await page.goto(`https://udn.com/news/breaknews/1/${item}#breaknews`, {
-    waitUntil: "domcontentloaded",
-  });
+  await page.goto(`https://udn.com/news/breaknews/1/${item}#breaknews`);
 
   let count = 0;
   let maxCount = 2;
-  while (count <= maxCount) {
-    //自動滾動 獲取更多新聞
-    await autoScroll({ page, dis: 1200, max: 3 });
-    count++;
-  }
+  // while (count <= maxCount) {
+  //   //自動滾動 獲取更多新聞
+  //   await autoScroll({ page, dis: 1200, max: 3 });
+  //   count++;
+  // }
 
   const result = await page.evaluate(() => {
     //抓取dom 來獲取頁面上的新聞資料

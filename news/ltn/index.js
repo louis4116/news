@@ -31,11 +31,9 @@ const ltnScrap = async (item) => {
       request.abort();
     else request.continue();
   });
-  await page.goto(`https://news.ltn.com.tw/list/breakingnews/${item}`, {
-    waitUntil: "domcontentloaded",
-  });
+  await page.goto(`https://news.ltn.com.tw/list/breakingnews/${item}`);
 
-  await autoScroll({ page, dis: 3000, max: 3 });
+  // await autoScroll({ page, dis: 3000, max: 3 });
 
   const result = await page.evaluate(() => {
     let data = [];

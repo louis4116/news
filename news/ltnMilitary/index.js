@@ -33,7 +33,7 @@ const ltnMilitary = async (item) => {
     waitUntil: "domcontentloaded",
   });
 
-  await autoScroll({ page, dis: 3000, max: 4 });
+  // await autoScroll({ page, dis: 3000, max: 4 });
 
   const result = await page.evaluate(() => {
     let data = [];

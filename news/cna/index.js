@@ -31,20 +31,20 @@ const cnaScrap = async (id) => {
         request.abort();
       else request.continue();
     });
-    await page.goto(`https://www.cna.com.tw/list/${id}.aspx`, {
-      waitUntil: "domcontentloaded",
-    });
-
+    await page.goto(`https://www.cna.com.tw/list/${id}.aspx`);
+    // , {
+    //   waitUntil: "domcontentloaded",
+    // }
     let count = 0;
     let maxCount = 2;
-    if (id !== "aall") {
-      //點擊畫面中的按鈕，讓新聞可以繼續跑
-      while (count <= maxCount) {
-        await page.waitForTimeout(200);
-        await page.click("#SiteContent_uiViewMoreBtn_Style3");
-        count++;
-      }
-    }
+    // if (id !== "aall") {
+    //   //點擊畫面中的按鈕，讓新聞可以繼續跑
+    //   while (count <= maxCount) {
+    //     await page.waitForTimeout(200);
+    //     await page.click("#SiteContent_uiViewMoreBtn_Style3");
+    //     count++;
+    //   }
+    // }
 
     const result = await page.evaluate(() => {
       let data = [];
