@@ -10,7 +10,6 @@ const ltnMilitary = async (item) => {
       "--disable-extensions",
       "--disable-bundled-ppapi-flash",
       "--disable-setuid-sandbox",
-      "--no-zygote",
     ],
     executablePath:
       process.env.NODE_ENV === "production"
