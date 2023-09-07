@@ -13,8 +13,8 @@ const ltnScrap = async (item) => {
   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
     options = {
       headless: "new",
-      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-      executablePath: await chromium.executablePath(),
+      args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
+      executablePath: await chrome.executablePath(),
     };
   } else {
     options = {
