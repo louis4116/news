@@ -3,7 +3,7 @@ const autoScroll = require("../../util/autoScroll");
 
 const ltnScrap = async (item) => {
   const browser = await puppeteer.launch({
-    headless: "new",
+    headless: false,
     args: [
       "--disable-gpu",
       "--disable-infobars",
