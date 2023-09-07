@@ -48,7 +48,7 @@ COPY package*.json ./
 COPY . .
 
 # Specify the default command to run your application
-CMD [ "npm", "start" ]
+CMD [ "nodemon", "index.js" ]
 # CMD ["node","index.js"]
 
 
