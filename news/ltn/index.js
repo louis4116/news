@@ -1,12 +1,19 @@
 const puppeteer = require("puppeteer-core");
 const { executablePath } = require("puppeteer");
+const chromium = require("@sparticuz/chromium");
 const autoScroll = require("../../util/autoScroll");
 
 const ltnScrap = async (item) => {
   const browser = await puppeteer.launch({
     headless: "new",
-    ignoreDefaultArgs: ["--enable-automation", "--disable-extensions"],
-    executablePath: executablePath(),
+    args: ["--no-sandbox"],
+    ignoreDefaultArgs: [
+      ...chromium.args,
+      "--enable-automation",
+      "--disable-extensions",
+    ],
+    executablePath: await chromium.executablePath(),
+    defaultViewport: chromium.defaultViewport,
     ignoreHTTPSErrors: true,
   });
 
