@@ -6,11 +6,12 @@ const cnaScrap = async (id) => {
   try {
     const browser = await puppeteer.launch({
       headless: "new",
-      args: ["--no-sandbox"],
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
       ignoreDefaultArgs: [
         ...chromium.args,
         "--enable-automation",
         "--disable-extensions",
+        "--disable-setuid-sandbox",
       ],
       executablePath: await chromium.executablePath(),
       defaultViewport: chromium.defaultViewport,
