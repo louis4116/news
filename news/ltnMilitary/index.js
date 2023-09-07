@@ -4,7 +4,14 @@ const autoScroll = require("../../util/autoScroll.js");
 const ltnMilitary = async (item) => {
   const browser = await puppeteer.launch({
     headless: "new",
-    args: ["--disable-setuid-sandbox"],
+    args: [
+      "--disable-gpu",
+      "--disable-infobars",
+      "--disable-extensions",
+      "--disable-bundled-ppapi-flash",
+      "--disable-setuid-sandbox",
+      "--no-zygote",
+    ],
     executablePath:
       process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
