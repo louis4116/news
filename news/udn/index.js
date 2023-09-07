@@ -1,20 +1,14 @@
-const puppeteer = require("puppeteer-core");
-const { executablePath } = require("puppeteer");
-const chromium = require("@sparticuz/chromium");
+const puppeteer = require("puppeteer");
 const autoScroll = require("../../util/autoScroll");
 
 const udnScrapy = async (item) => {
   const browser = await puppeteer.launch({
     headless: "new",
-    args: ["--no-sandbox"],
-    ignoreDefaultArgs: [
-      ...chromium.args,
-      "--enable-automation",
-      "--disable-extensions",
-    ],
-    executablePath: await chromium.executablePath(),
-    defaultViewport: chromium.defaultViewport,
-    ignoreHTTPSErrors: true,
+    ignoreDefaultArgs: ["--enable-automation"],
+    executablePath:
+      process.env.NODE_ENV === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
   });
   const page = await browser.newPage();
   await page.goto(`https://udn.com/news/breaknews/1/${item}#breaknews`, {
