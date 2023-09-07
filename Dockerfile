@@ -32,64 +32,23 @@
 # # RUN npm install -g nodemon
 # COPY . .
 # Use an official Node.js runtime as the base image
-FROM node:14
+# Use an official Node.js runtime as a parent image
+FROM node:18
 
-# Set a working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Install nodemon globally
+# Install Nodemon globally
 RUN npm install -g nodemon
 
-# Install Puppeteer and its dependencies
-RUN apt-get update && apt-get install -y \
-    gconf-service \
-    libasound2 \
-    libatk1.0-0 \
-    libatk-bridge2.0-0 \
-    libc6 \
-    libcairo2 \
-    libcups2 \
-    libdbus-1-3 \
-    libexpat1 \
-    libfontconfig1 \
-    libgcc1 \
-    libgconf-2-4 \
-    libgdk-pixbuf2.0-0 \
-    libglib2.0-0 \
-    libgtk-3-0 \
-    libnspr4 \
-    libpango-1.0-0 \
-    libpangocairo-1.0-0 \
-    libstdc++6 \
-    libx11-6 \
-    libx11-xcb1 \
-    libxcb1 \
-    libxcomposite1 \
-    libxcursor1 \
-    libxdamage1 \
-    libxext6 \
-    libxfixes3 \
-    libxi6 \
-    libxrandr2 \
-    libxrender1 \
-    libxss1 \
-    libxtst6 \
-    fonts-ipafont-gothic \
-    fonts-wqy-zenhei \
-    fonts-thai-tlwg \
-    fonts-kacst \
-    ttf-freefont \
-    fonts-liberation \
-    xdg-utils
-
-# Install Puppeteer
+# Install Puppeteer as a project dependency (you can also use yarn if preferred)
 RUN npm install puppeteer
 
-# Copy your application files to the container
+# Copy your application code into the container
 COPY . .
 
-# Start your application
-CMD ["npm", "start"]
+# Specify the default command to run your application
+CMD [ "npm", "start" ]
 # CMD ["node","index.js"]
 
 
