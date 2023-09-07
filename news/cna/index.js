@@ -10,6 +10,7 @@ const cnaScrap = async (id) => {
         ...chromium.args,
         "--enable-automation",
         "--disable-extensions",
+        "--no-sandbox",
       ],
       executablePath: await chromium.executablePath(),
       defaultViewport: chromium.defaultViewport,
