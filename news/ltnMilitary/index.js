@@ -10,7 +10,6 @@ const ltnMilitary = async (item) => {
       "--disable-extensions",
       "--disable-bundled-ppapi-flash",
       "--disable-setuid-sandbox",
-      "--blink-settings=imagesEnabled=false",
       "--no-sandbox",
       "--no-zygote",
     ],
