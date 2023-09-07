@@ -4,7 +4,7 @@ const cnaScrap = async (id) => {
   try {
     const browser = await chrome.puppeteer.launch({
       headless: "new",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
       ignoreDefaultArgs: ["--enable-automation"],
       executablePath: await chrome.executablePath,
     });
