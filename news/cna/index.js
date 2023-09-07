@@ -9,18 +9,19 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 }
 const cnaScrap = async (id) => {
   let options = {};
-  if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-    options = {
-      headless: "new",
-      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-      executablePath: await chromium.executablePath(),
-    };
-  } else {
-    options = {
-      headless: "new",
-    };
-  }
   try {
+    if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+      options = {
+        headless: "new",
+        args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+        executablePath: await chromium.executablePath(),
+      };
+    } else {
+      options = {
+        headless: "new",
+      };
+    }
+
     let browser = await puppeteer.launch(options);
     let page = await browser.newPage();
     // await page.setRequestInterception(true);
