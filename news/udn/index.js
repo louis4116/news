@@ -21,7 +21,12 @@ const udnScrapy = async (item) => {
   const page = await browser.newPage();
   await page.setRequestInterception(true);
   page.on("request", (request) => {
-    if (request.resourceType() === "image") request.abort();
+    if (
+      request.resourceType() === "image" ||
+      request.resourceType() === "stylesheet" ||
+      request.resourceType() === "font"
+    )
+      request.abort();
     else request.continue();
   });
   await page.goto(`https://udn.com/news/breaknews/1/${item}#breaknews`, {
@@ -62,13 +67,13 @@ const udnScrapy = async (item) => {
 
     return data;
   });
-  await page.waitForFunction(
-    (result) => {
-      return result && result.length >= 20;
-    },
-    {},
-    result
-  );
+  // await page.waitForFunction(
+  //   (result) => {
+  //     return result && result.length >= 20;
+  //   },
+  //   {},
+  //   result
+  // );
   await browser.close();
   return result;
 };

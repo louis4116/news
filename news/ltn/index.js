@@ -23,7 +23,12 @@ const ltnScrap = async (item) => {
   const page = await browser.newPage();
   await page.setRequestInterception(true);
   page.on("request", (request) => {
-    if (request.resourceType() === "image") request.abort();
+    if (
+      request.resourceType() === "image" ||
+      request.resourceType() === "stylesheet" ||
+      request.resourceType() === "font"
+    )
+      request.abort();
     else request.continue();
   });
   await page.goto(`https://news.ltn.com.tw/list/breakingnews/${item}`, {
@@ -50,13 +55,13 @@ const ltnScrap = async (item) => {
     }
     return data;
   });
-  await page.waitForFunction(
-    async (result) => {
-      return result && result.length >= 20;
-    },
-    {},
-    result
-  );
+  // await page.waitForFunction(
+  //   async (result) => {
+  //     return result && result.length >= 20;
+  //   },
+  //   {},
+  //   result
+  // );
   await browser.close();
   return result;
 };
