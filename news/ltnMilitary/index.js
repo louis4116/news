@@ -22,9 +22,12 @@ const ltnMilitary = async (item) => {
   await page.goto(`https://def.ltn.com.tw/${item}`, {
     waitUntil: "domcontentloaded",
   });
-  page.on("dialog", async (dialog) => {
-    await dialog.dismiss();
+  await page.setRequestInterception(true);
+  page.on("request", (request) => {
+    if (request.resourceType() === "image") request.abort();
+    else request.continue();
   });
+
   await autoScroll({ page, dis: 3000, max: 4 });
   const result = await page.evaluate(() => {
     let data = [];

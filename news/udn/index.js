@@ -22,6 +22,11 @@ const udnScrapy = async (item) => {
   await page.goto(`https://udn.com/news/breaknews/1/${item}#breaknews`, {
     waitUntil: "domcontentloaded",
   });
+  await page.setRequestInterception(true);
+  page.on("request", (request) => {
+    if (request.resourceType() === "image") request.abort();
+    else request.continue();
+  });
   let count = 0;
   let maxCount = 2;
   while (count <= maxCount) {
