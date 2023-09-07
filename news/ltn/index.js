@@ -1,36 +1,39 @@
-const puppeteer = require("puppeteer");
-const autoScroll = require("../../util/autoScroll");
+let chrome = {};
+let puppeteer;
+
+if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+  chrome = require("@sparticuz/chromium-min");
+  puppeteer = require("puppeteer-core");
+} else {
+  puppeteer = require("puppeteer");
+}
 
 const ltnScrap = async (item) => {
-  const browser = await puppeteer.launch({
-    headless: false,
-    args: [
-      "--disable-gpu",
-      "--disable-infobars",
-      "--disable-extensions",
-      "--disable-bundled-ppapi-flash",
-      "--disable-setuid-sandbox",
+  let options = {};
+  if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+    options = {
+      headless: "new",
+      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+      executablePath: await chromium.executablePath(),
+    };
+  } else {
+    options = {
+      headless: "new",
+    };
+  }
 
-      "--no-sandbox",
-      "--no-zygote",
-    ],
-    executablePath:
-      process.env.NODE_ENV === "production"
-        ? process.env.PUPPETEER_EXECUTABLE_PATH
-        : puppeteer.executablePath(),
-  });
-
-  const page = await browser.newPage();
-  await page.setRequestInterception(true);
-  page.on("request", (request) => {
-    if (
-      request.resourceType() === "image" ||
-      request.resourceType() === "stylesheet" ||
-      request.resourceType() === "font"
-    )
-      request.abort();
-    else request.continue();
-  });
+  let browser = await puppeteer.launch(options);
+  let page = await browser.newPage();
+  // await page.setRequestInterception(true);
+  // page.on("request", (request) => {
+  //   if (
+  //     request.resourceType() === "image" ||
+  //     request.resourceType() === "stylesheet" ||
+  //     request.resourceType() === "font"
+  //   )
+  //     request.abort();
+  //   else request.continue();
+  // });
   await page.goto(`https://news.ltn.com.tw/list/breakingnews/${item}`);
 
   // await autoScroll({ page, dis: 3000, max: 3 });
