@@ -1,5 +1,6 @@
-// const puppeteer = require("puppeteer-core");
+const puppeteer = require("puppeteer-core");
 const chrome = require("chrome-aws-lambda");
+
 const cnaScrap = async (id) => {
   try {
     const browser = await chrome.puppeteer.launch({
