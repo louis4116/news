@@ -5,7 +5,7 @@ const autoScroll = require("../../util/autoScroll");
 
 const udnScrapy = async (item) => {
   const browser = await puppeteer.launch({
-    headless: "news",
+    headless: "new",
     args: ["--no-sandbox"],
     ignoreDefaultArgs: [
       ...chromium.args,
