@@ -1,15 +1,12 @@
-const puppeteer = require("puppeteer");
+const chrome = require("chrome-aws-lambda");
 const autoScroll = require("../../util/autoScroll");
 
 const udnScrapy = async (item) => {
   const browser = await puppeteer.launch({
     headless: "new",
-    args: ["--no-sandbox"],
+    args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
     ignoreDefaultArgs: ["--enable-automation"],
-    executablePath:
-      process.env.NODE_ENV === "production"
-        ? process.env.PUPPETEER_EXECUTABLE_PATH
-        : puppeteer.executablePath(),
+    executablePath: await chrome.executablePath,
   });
   const page = await browser.newPage();
   await page.goto(`https://udn.com/news/breaknews/1/${item}#breaknews`, {
