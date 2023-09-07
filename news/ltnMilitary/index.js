@@ -1,12 +1,13 @@
-const chrome = require("chrome-aws-lambda");
+const puppeteer = require("puppeteer-core");
+const { executablePath } = require("puppeteer");
 const autoScroll = require("../../util/autoScroll.js");
 
 const ltnMilitary = async (item) => {
-  const browser = await chrome.puppeteer.launch({
+  const browser = await puppeteer.launch({
     headless: "new",
-    args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
-    ignoreDefaultArgs: ["--enable-automation"],
-    executablePath: await chrome.executablePath,
+    ignoreDefaultArgs: ["--enable-automation", "--disable-extensions"],
+    executablePath: executablePath(),
+    ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
   await page.goto(`https://def.ltn.com.tw/${item}`, {

@@ -1,6 +1,5 @@
 const puppeteer = require("puppeteer-core");
 const { executablePath } = require("puppeteer");
-const chrome = require("chrome-aws-lambda");
 
 const cnaScrap = async (id) => {
   try {
