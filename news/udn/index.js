@@ -19,14 +19,15 @@ const udnScrapy = async (item) => {
         : puppeteer.executablePath(),
   });
   const page = await browser.newPage();
-  await page.goto(`https://udn.com/news/breaknews/1/${item}#breaknews`, {
-    waitUntil: "domcontentloaded",
-  });
   await page.setRequestInterception(true);
   page.on("request", (request) => {
     if (request.resourceType() === "image") request.abort();
     else request.continue();
   });
+  await page.goto(`https://udn.com/news/breaknews/1/${item}#breaknews`, {
+    waitUntil: "domcontentloaded",
+  });
+
   let count = 0;
   let maxCount = 2;
   while (count <= maxCount) {

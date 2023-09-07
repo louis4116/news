@@ -21,14 +21,15 @@ const cnaScrap = async (id) => {
     });
 
     const page = await browser.newPage();
-    await page.goto(`https://www.cna.com.tw/list/${id}.aspx`, {
-      waitUntil: "domcontentloaded",
-    });
     await page.setRequestInterception(true);
     page.on("request", (request) => {
       if (request.resourceType() === "image") request.abort();
       else request.continue();
     });
+    await page.goto(`https://www.cna.com.tw/list/${id}.aspx`, {
+      waitUntil: "domcontentloaded",
+    });
+
     let count = 0;
     let maxCount = 2;
     if (id !== "aall") {
