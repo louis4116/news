@@ -43,7 +43,7 @@ RUN npm install -g nodemon
 
 # Install Puppeteer as a project dependency (you can also use yarn if preferred)
 RUN npm install puppeteer
-
+COPY package*.json ./
 # Copy your application code into the container
 COPY . .
 
