@@ -2,7 +2,7 @@ let chrome = {};
 let puppeteer;
 
 if ((process.env.NODE_ENV = "production")) {
-  chrome = require("@sparticuz/chromium");
+  chrome = require("chrome-aws-lambda");
   puppeteer = require("puppeteer-core");
 } else {
   puppeteer = require("puppeteer");
