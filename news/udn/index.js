@@ -2,7 +2,7 @@ const autoScroll = require("../../util/autoScroll");
 let chrome = {};
 let puppeteer;
 
-if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+if ((process.env.NODE_ENV = "production")) {
   chrome = require("@sparticuz/chromium-min");
   puppeteer = require("puppeteer-core");
 } else {
@@ -10,7 +10,7 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 }
 const udnScrapy = async (item) => {
   let options = {};
-  if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+  if ((process.env.NODE_ENV = "production")) {
     options = {
       headless: "new",
       args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],

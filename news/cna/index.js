@@ -1,7 +1,7 @@
 let chrome = {};
 let puppeteer;
 
-if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+if ((process.env.NODE_ENV = "production")) {
   chrome = require("@sparticuz/chromium-min");
   puppeteer = require("puppeteer-core");
 } else {
@@ -10,7 +10,7 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 const cnaScrap = async (id) => {
   let options = {};
   try {
-    if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+    if ((process.env.NODE_ENV = "production")) {
       options = {
         headless: "new",
         args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
