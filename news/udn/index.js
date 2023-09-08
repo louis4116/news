@@ -3,7 +3,7 @@ let chrome = {};
 let puppeteer;
 
 if ((process.env.NODE_ENV = "production")) {
-  chrome = require("@sparticuz/chromium-min");
+  chrome = require("@sparticuz/chromium");
   puppeteer = require("puppeteer-core");
 } else {
   puppeteer = require("puppeteer");
