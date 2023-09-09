@@ -22,7 +22,7 @@ const sendEmail = async (option) => {
         user: process.env.MY_EMAIL,
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        refreshToken: process.env.REFRESF_TOKEN,
+        refreshToken: process.env.REFRESFH_TOKEN,
         accessToken: AccessToken,
       },
       tls: {
