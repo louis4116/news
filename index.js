@@ -34,6 +34,7 @@ app.use("/handleNews", userNewsRoute);
 app.use("/getUser", getUser);
 
 app.use("/", (req, res, next) => {
+  if (req.path !== "/") next();
   res.status(200).json({
     status: "success",
     msg: "連接成功",
@@ -41,6 +42,7 @@ app.use("/", (req, res, next) => {
 });
 
 app.use("*", (req, res, next) => {
+  console.log(req);
   res.status(404).json({
     status: "error",
     msg: "找不到路由，請確認是否輸入錯誤",

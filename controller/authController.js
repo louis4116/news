@@ -37,7 +37,7 @@ exports.signUp = async (req, res) => {
   try {
     res.status(200).send({
       msg: "success",
-      newUser,
+      // newUser,
     });
   } catch (err) {
     res.status(400).send("註冊失敗");

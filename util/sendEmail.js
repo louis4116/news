@@ -30,12 +30,12 @@ const sendEmail = async (option) => {
       },
     });
 
-    const resetURL = `${protocol}://localhost:3000/resetPassword/${AccessToken}`;
+    const resetURL = `${protocol}://localhost:5173/resetPassword/${AccessToken}`;
     const mailOptions = {
-      from: "qscasd7073@gmail.com",
+      from: "pulala0514@gmail.com",
       to: email,
       subject: "密碼重置",
-      text: `如果沒有忘記密碼，請無視這封信件`,
+      text: `如果沒有忘記密碼，請不要理會這封信件`,
       html: `<a href=${resetURL}>點擊這裡重設密碼</a></br>
             <h2>請在10分鐘內重設密碼</h2>`,
     };

@@ -1,23 +1,6 @@
 const mongoose = require("mongoose");
 const News = require("../model/newModel");
 const User = require("../model/userModel");
-exports.storeNews = async (req, res) => {
-  //模擬用 之後news的儲存資訊會由前端自行產生
-  try {
-    const doc = await News.create(req.body);
-    res.status(201).json({
-      status: "success",
-      data: {
-        data: doc,
-      },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      msg: "錯誤！！！",
-    });
-  }
-};
 
 exports.getUserNews = async (req, res) => {
   try {
@@ -36,7 +19,6 @@ exports.storeNewsToUser = async (req, res) => {
   const newsId = new mongoose.Types.ObjectId();
   const findNews = await News.find({ title: req.body.title });
   const findUser = await User.findOne({ _id: req.params.id });
-
   if (findUser && findNews.length !== 0)
     return res.status(403).send("此新聞已經存在");
   try {
@@ -96,7 +78,7 @@ exports.deleteNewsFromUser = async (req, res) => {
 exports.createMemo = async (req, res) => {
   const findNews = await News.findOne({ _id: req.params.id });
   if (!findNews) return res.status(404).send("錯誤，無項目");
-  console.log(req.body.memo);
+  // console.log(req.body.memo);
   try {
     const result = await News.findOneAndUpdate(
       { _id: req.params.id },
