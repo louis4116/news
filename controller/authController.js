@@ -61,8 +61,10 @@ exports.login = async (req, res) => {
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
     res.status(200).json({
       status: "success",
-      token,
-      id: user.id,
+      data: {
+        token,
+        id: user.id,
+      },
     });
   } catch (err) {
     res.status(500).json({ status: "error", message: "伺服器錯誤" });
@@ -106,7 +108,6 @@ exports.resetPassword = async (req, res) => {
     resetPasswordToken: req.params.id,
     resetPasswordExpires: { $gt: Date.now() },
   });
-  console.log(user);
   if (!user) return res.status(400).send("令牌過期或是錯誤！！！");
   try {
     user.password = req.body.password;
