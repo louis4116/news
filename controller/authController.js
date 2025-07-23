@@ -99,7 +99,7 @@ exports.forgetPassword = async (req, res, next) => {
       message: "信件已寄出",
     });
   } catch (e) {
-    res.status(500).send(e);
+    res.status(500).json({ status: "error", message: "伺服器錯誤" });
   }
 };
 
