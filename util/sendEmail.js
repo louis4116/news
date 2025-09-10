@@ -9,7 +9,7 @@ const sendEmail = async (option) => {
     clientSecret: process.env.CLIENT_SECRET,
     redirectUri: process.env.REDIRECT_URL,
   });
-
+  // console.log(oauth2Client);
   try {
     const { tokens } = await oauth2Client.refreshToken(
       process.env.REFRESFH_TOKEN

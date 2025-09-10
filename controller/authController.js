@@ -12,11 +12,12 @@ exports.resolveToken = async (req, res, next) => {
   ) {
     token = req.headers.authorization.split(" ")[1];
   }
-
+  console.log(req.headers.authorization);
   if (!token) {
     return res.status(401).json({ status: "fail", message: "請先登入" });
   }
   const result = jwt.verify(token, process.env.JWT_SECRET);
+
   const currentUser = await User.findById(result.id);
   if (!currentUser)
     return res.status(401).json({ status: "fail", msg: "無此使用者" });
