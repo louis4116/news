@@ -30,7 +30,7 @@ const sendEmail = async (option) => {
       },
     });
 
-    const resetURL = `${protocol}://news-ecru-iota.vercel.app/resetPassword/${AccessToken}`;
+    const resetURL = `${protocol}://luxury-faun-6aeab3.netlify.app/resetPassword/${AccessToken}`;
     const mailOptions = {
       from: "pulala0514@gmail.com",
       to: email,
