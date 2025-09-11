@@ -97,7 +97,7 @@ exports.forgetPassword = async (req, res, next) => {
     await user.save();
     res.status(200).json({
       status: "success",
-      message: "信件已寄出",
+      message: result,
     });
   } catch (e) {
     res.status(500).json({ status: "error", message: e });
