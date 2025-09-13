@@ -95,12 +95,13 @@ exports.forgetPassword = async (req, res, next) => {
     user.resetPasswordToken = result;
     user.resetPasswordExpires = Date.now() + 600000;
     await user.save();
+
     res.status(200).json({
       status: "success",
-      message: result,
+      message: "信件已寄出",
     });
   } catch (e) {
-    res.status(500).json({ status: "error", message: e });
+    res.status(500).json({ status: "error", e });
   }
 };
 

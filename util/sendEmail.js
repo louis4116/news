@@ -39,9 +39,9 @@ const sendEmail = async (option) => {
       html: `<a href=${resetURL}>點擊這裡重設密碼</a></br>
             <h2>請在10分鐘內重設密碼</h2>`,
     };
-    const result = await transport.sendMail(mailOptions);
+    await transport.sendMail(mailOptions);
 
-    return result;
+    return AccessToken;
   } catch (e) {
     return e;
   }
